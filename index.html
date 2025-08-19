@@ -58,6 +58,8 @@
           <a href="mailto:arthur.gbs.dev@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
           <a href="https://wa.me/5561991152822" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         </div>
+        <a href="#contato" class="cta-button">Fale comigo</a>
+
       </div>
     </section>
 
@@ -163,7 +165,7 @@
 
     <section id="contato" class="reveal">
       <h2>Vamos Conversar?</h2>
-      <p>Aberto a novas oportunidades e conexões. Fale comigo pelos canais abaixo ou use o formulário.</p>
+      <p>Estou aberto a novas oportunidades. Fale comigo pelos botoões a baixo ou pelo formulário</p>
 
       <div class="social-links-contato">
         <a href="https://www.linkedin.com/in/arthur-gbs-dev/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
@@ -172,27 +174,37 @@
         <a href="https://wa.me/5561991152822" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
       </div>
 
-      <form action="#" method="post" novalidate>
-        <div class="field">
-          <label for="nome">Seu Nome</label>
-          <input id="nome" name="name" type="text" placeholder="Seu Nome" required aria-required="true" aria-invalid="false">
-          <span class="error" id="erro-nome" role="alert"></span>
-        </div>
+      <form action="https://formspree.io/f/mvgqjkdo" method="POST" id="contato-form" novalidate>
+      <div class="field">
+        <label for="nome">Seu Nome</label>
+        <input id="nome" name="name" type="text" placeholder="Seu Nome" required aria-required="true" aria-invalid="false">
+        <span class="error" id="erro-nome" role="alert"></span>
+      </div>
 
-        <div class="field">
-          <label for="email">Seu E-mail</label>
-          <input id="email" name="email" type="email" placeholder="Seu E-mail" required aria-required="true" aria-invalid="false">
-          <span class="error" id="erro-email" role="alert"></span>
-        </div>
+      <div class="field">
+        <label for="email">Seu E-mail</label>
+        <input id="email" name="email" type="email" placeholder="Seu E-mail" required aria-required="true" aria-invalid="false">
+        <span class="error" id="erro-email" role="alert"></span>
+      </div>
 
-        <div class="field">
-          <label for="mensagem">Sua Mensagem</label>
-          <textarea id="mensagem" name="message" rows="6" placeholder="Sua Mensagem" required aria-required="true" aria-invalid="false"></textarea>
-          <span class="error" id="erro-mensagem" role="alert"></span>
-        </div>
+      <div class="field">
+        <label for="mensagem">Sua Mensagem</label>
+        <textarea id="mensagem" name="message" rows="6" placeholder="Sua Mensagem" required aria-required="true" aria-invalid="false"></textarea>
+        <span class="error" id="erro-mensagem" role="alert"></span>
+      </div>
 
-        <button type="submit" class="cta-button">Enviar Mensagem</button>
-      </form>
+      <!-- campos ocultos extras -->
+      <input type="hidden" name="_subject" value="Contato - Arthur.gbs.dev">
+      <!-- honeypot anti-spam (não preencher) -->
+      <input type="text" name="website" tabindex="-1" autocomplete="off" style="display:none">
+
+      <button type="submit" class="cta-button">Enviar Mensagem</button>
+
+      <!-- status de envio -->
+      <p class="form-status" role="status" aria-live="polite"></p>
+    </form>
+
+
     </section>
   </main>
 
