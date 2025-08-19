@@ -1,22 +1,4 @@
-<h1 align="center">🌐 Meu Site Pessoal</h1>
-
-<p align="center">
-  <strong>Portfólio | Landing Pages | Estudos em Java</strong>
-</p>
-
-<p align="center">
-  <a href="mailto:arthur.gbs.dev@gmail.com" target="_blank">
-    <img alt="Gmail" src="https://img.shields.io/badge/-Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
-  </a>
-  <a href="https://www.linkedin.com/in/arthur-gabriel-borges-silva/" target="_blank">
-    <img alt="LinkedIn" src="https://img.shields.io/badge/-LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" />
-  </a>
-  <a href="https://arthursilvagbs.github.io/Site/" target="_blank">
-    <img alt="Website" src="https://img.shields.io/badge/-Acessar%20Site-3B82F6?style=for-the-badge&logo=google-chrome&logoColor=white" />
-  </a>
-</p>
-
----
+<h1 align="center"> Meu Site Pessoal</h1>
 
 ## Sobre o projeto
 
