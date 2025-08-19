@@ -94,8 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   spy();
   window.addEventListener('scroll', spy, { passive: true });
-
-  /* --- Validação básica do formulário no cliente --- */
+  /* --- Validação básica do formulário no cliente + envio Formspree --- */
   const form = document.querySelector('form');
   form?.addEventListener('submit', e => {
     const nome = document.getElementById('nome');
@@ -107,6 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let ok = true;
 
+    // validações básicas
     if (!nome.value.trim()) {
       ok = false;
       nome.setAttribute('aria-invalid', 'true');
@@ -135,6 +135,61 @@ document.addEventListener('DOMContentLoaded', () => {
       errMsg.textContent = '';
     }
 
-    if (!ok) e.preventDefault();
+    // interrompe se inválido
+    if (!ok) {
+      e.preventDefault();
+      return;
+    }
+
+    // Envio assíncrono para o endpoint do Formspree definido no action do <form>
+    e.preventDefault();
+
+    // honeypot anti-spam (campo oculto "website")
+    const honey = form.querySelector('input[name="website"]');
+    if (honey && honey.value) {
+      return; // bot ignorado
+    }
+
+    // elemento de status (usa o <p class="form-status"> do HTML)
+    let statusEl = form.querySelector('.form-status');
+    if (!statusEl) {
+      statusEl = document.createElement('p');
+      statusEl.className = 'form-status';
+      statusEl.setAttribute('role', 'status');
+      statusEl.setAttribute('aria-live', 'polite');
+      form.appendChild(statusEl);
+    }
+
+    statusEl.textContent = 'Enviando...';
+
+    const data = new FormData(form);
+    const btn = form.querySelector('button[type="submit"]');
+    btn?.setAttribute('disabled', 'true');
+
+    fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(res => {
+      if (res.ok) {
+        statusEl.textContent = 'Mensagem enviada com sucesso! Você será respondido logo no email informado no formulário.';
+        statusEl.className = 'form-status success'; // <- aplica verde
+        form.reset();
+      } else {
+        return res.json().then(j => {
+          throw new Error(j?.error || 'Falha ao enviar. Tente novamente.');
+        });
+      }
+    })
+    .catch(() => {
+      statusEl.textContent = 'Aconteceu alguma coisa de errado, tente novamente mais tarde.';
+      statusEl.className = 'form-status error'; // <- aplica vermelho
+    })
+    .finally(() => {
+      btn?.removeAttribute('disabled');
+    });
   });
+
+
 });
