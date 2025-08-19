@@ -83,9 +83,11 @@ nav{
 
 /* ---- HERO ---- */
 #hero{
-  min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;
+  min-height:72vh; /* antes: 100vh */
+  display:flex;align-items:center;justify-content:center;text-align:center;
   background:linear-gradient(rgba(18,18,18,.7),rgba(18,18,18,.9)),
     url('https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+  padding-top: calc(var(--header-h) + 24px); /* garante respiro sob o header fixo */
 }
 .hero-content h1{font-size:3.2rem;color:var(--heading-color);margin-bottom:20px}
 .hero-content p{font-size:1.2rem;max-width:600px;margin:0 auto 30px}
@@ -94,11 +96,20 @@ nav{
 .social-links a:hover{color:var(--accent-color);transform:translateY(-4px)}
 .social-links a:focus-visible{outline:3px solid var(--focus-color)}
 
+.social-links + .cta-button{
+  margin-top: 28px;   /* ajuste fino aqui: 24–40px */
+}
+
+/* No mobile, um tiquinho mais de respiro */
+@media (max-width:768px){
+  .social-links + .cta-button{ margin-top: 32px; }
+}
+
 /* ---- SOBRE ---- */
 .sobre-content{display:flex;align-items:center;gap:50px}
 .sobre-content img{max-width:350px;border-radius:12px;object-fit:cover}
 .sobre-texto h3{font-size:1.8rem;color:var(--heading-color);margin-bottom:15px}
-.sobre-texto p{line-height:1.8;margin-bottom:15px}
+.sobre-texto p{line-height:1.8;margin-bottom:15px;text-align: justify;}
 
 /* ---- GRIDs ---- */
 .projetos-grid,.servicos-grid{
@@ -161,6 +172,34 @@ input,textarea{
   width:100%;padding:14px;border-radius:10px;border:1px solid var(--secondary-color);
   background:var(--primary-color);color:var(--text-color);font:inherit
 }
+
+/* ---- STATUS DO FORMULÁRIO ---- */
+.form-status{
+  margin-top: 12px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-align: center;
+  min-height: 1.4em; /* garante espaço mesmo antes de aparecer texto */
+  transition: color 0.2s ease;
+}
+
+/* sucesso */
+.form-status.success{
+  color: #34D399; /* verde suave */
+}
+
+/* erro */
+.form-status.error{
+  color: #FCA5A5; /* vermelho suave */
+}
+
+/* estado "enviando" */
+.form-status.sending{
+  color: var(--accent-color);
+}
+
+
+
 input:focus-visible,textarea:focus-visible{outline:3px solid var(--focus-color);border-color:transparent}
 .error{color:#FCA5A5;font-size:.9rem;min-height:1.2em}
 
@@ -205,6 +244,20 @@ footer{text-align:center;padding:20px 10%;background:var(--primary-color);border
   font-weight: 600;
 }
 
+/* Botão do formulário igual ao restante do site */
+form .cta-button {
+  display: inline-block;         /* não ocupar 100% da largura */
+  width: auto;                   /* largura só o necessário */
+  padding: 12px 28px;            /* mesmo padding dos outros .cta-button */
+  font-size: 1.05rem;            /* tamanho consistente */
+  font-weight: 600;              /* igual ao padrão */
+  border: none;                  /* remove contorno estranho */
+  outline: none;                 /* remove highlight feio */
+  border-radius: 10px;           /* cantos iguais ao padrão */
+  box-shadow: 0 6px 14px rgba(59,130,246,.2); /* sombra igual ao hero */
+  cursor: pointer;
+  text-align: center;
+}
 
 @media (max-width:768px){
   .hero-content h1{font-size:2.4rem}
@@ -230,7 +283,7 @@ footer{text-align:center;padding:20px 10%;background:var(--primary-color);border
     display:flex;flex-direction:column;align-items:center;text-align:center;width:80px
   }
   #habilidades .servicos-grid .servico-card .skill-item i{
-    font-size:3.5rem;color:var(--text-color);margin-bottom:10px;transition:color .2s ease, transform .2s ease
+    font-size:3.5rem;color:var(--accent-color);margin-bottom:10px;transition:color .2s ease, transform .2s ease
   }
   #habilidades .servicos-grid .servico-card .skill-item p{font-size:.9rem;color:var(--text-color);font-weight:400}
   #habilidades .servicos-grid .servico-card .skill-item:hover i{color:var(--accent-color);transform:scale(1.08)}
